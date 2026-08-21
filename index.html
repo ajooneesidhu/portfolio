@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SWAP: Larry's name for yours -->
+  <title>Ajoonee Sidhu ~ portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-color-layer" aria-hidden="true"></div>
+<div class="bg-planets" aria-hidden="true">
+  <div class="planet planet-mars"></div>
+  <div class="planet planet-neptune"></div>
+  <div class="planet planet-violet"></div>
+  <div class="planet planet-ringed"></div>
+</div>
+<div class="bg-stars" aria-hidden="true"></div>
+<div class="bg-glitch" aria-hidden="true">
+  <div class="glitch-bar glitch-bar-1"></div>
+  <div class="glitch-bar glitch-bar-2"></div>
+  <div class="glitch-bar glitch-bar-3"></div>
+  <div class="glitch-bar glitch-bar-4"></div>
+  <div class="glitch-bar glitch-bar-5"></div>
+  <div class="glitch-bar glitch-bar-6"></div>
+  <div class="glitch-bar glitch-bar-7"></div>
+  <div class="glitch-bar glitch-bar-8"></div>
+</div>
+
+<header>
+  <!-- SWAP: your name, your words -->
+  <h1>Ajoonee Sidhu</h1>
+  <p>Psychology and Brain Sciences Student - UC Santa Barbara</p>
+</header>
+
+<main>
+
+  <section class="latest-work" aria-label="Latest work index">
+    <h2 class="latest-work-heading">Latest work</h2>
+    <a class="work-row" href="#enceladus">
+      <span class="work-title">Enceladus</span>
+      <span class="work-meta">Projection — 2026</span>
+    </a>
+    <a class="work-row" href="#jumbled">
+      <span class="work-title">Jumbled</span>
+      <span class="work-meta">Audio — 2026</span>
+    </a>
+    <a class="work-row" href="#freshmix">
+      <span class="work-title">Fresh Mix</span>
+      <span class="work-meta">Audio — 2026</span>
+    </a>
+  </section>
+
+  <!-- ============================================================
+       This is Larry's portfolio. Your job: make it YOURS.
+       1. Put your media files in the media/ folder,
+          named projectname_NN.ext ~ lowercase, no spaces.
+       2. Swap Larry's filenames, titles, meta, and text for yours,
+          one project at a time. Check the browser after each swap.
+       3. Copy a whole <section> block to add more projects.
+          Delete Larry's leftovers when you are done.
+       ============================================================ -->
+
+  <section class="project" id="enceladus">
+    <h2>Enceladus</h2>
+    <p class="meta">projection | 2026 | group project | Ajoonee Sidhu</p>
+    <figure>
+      <video src="media/sidhu_enceladus_06.mp4" poster="media/sidhu_enceladus_06_poster.jpg" controls></video>
+      <figcaption>Video of live projection using Leap Motion sensor.</figcaption>
+    </figure>
+    <figure>
+      <img src="media/sidhu_enceladus_07.jpg" alt="3D printed crystals surrounding Leap Motion sensor">
+      <figcaption>3D crystal decor surrounding Leap Motion Sensor that controls projection.</figcaption>
+    </figure>
+    <p>
+       A projection of the surface of Saturn's moon, Enceladus. 
+       The projection surrounds the audience member along two walls,
+       allowing for an immersive experience. Audience members experience
+       a simulation of walking on this moon along a preset path. This is 
+       the 3D printed decor that was added to the projection, and they sit 
+       on a pedestalsurrounding the Leap Motion sensor that takes in hand 
+       movement in order to move through the projection. 
+
+    </p>
+  </section>
+
+  
+  <section class="project" id="jumbled">
+    <h2>Jumbled</h2>
+    <p class="meta">audio | 2026 | independent | Ajoonee Sidhu</p>
+    <figure>
+      <img src="media/jumbled_visual.png" alt="Colorful glitch-art visual with branching rhythm-tree shapes and warped contour lines">
+      <audio src="media/klotho_20260807-102001.wav" controls></audio>
+      <figcaption>A glitch-art visual echoing the piece's rhythm trees and contours, paired with the one-minute audio.</figcaption>
+    </figure>
+    <p>
+      One-minute long musical composition created by coding 
+      in Google Colab using Python. Various concepts that were presented in 
+      MAT 111MC were used, including rhythm trees and contours. The goal was 
+      to create an audio inspired by glitches and odd rhythms. Claude was used 
+      for debugging purposes and code refining. 
+    </p>
+  </section>
+
+    <section class="project" id="freshmix">
+    <h2>Fresh Mix</h2>
+    <p class="meta">audio | 2026 | independent | Ajoonee Sidhu</p>
+    <figure>
+      <img src="media/freshmix.png" controls></img>
+      <figcaption>Screenshot of what Ableton will kind of look like 
+        of a **future** modern house track.</figcaption>
+    </figure>
+    <p>
+      Future goal: Three-minute long musical composition created by putting together tracks in Ableton. 
+      The goal is to create a full track inspired by modern house music.  
+    </p>
+  </section>
+
+  <!-- ADD YOUR NEXT PROJECT HERE: copy a whole <section> ... </section> block -->
+
+</main>
+
+<footer>
+  <!-- SWAP: your name and email -->
+  <p>Ajoonee Sidhu ~ ajooneesidhu@ucsb.edu ~ 2026</p>
+</footer>
+
+<script>
+  // Fade + slide each project in as it scrolls into view — re-triggers
+  // every time, both scrolling down and back up.
+  const projects = document.querySelectorAll('.project');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.15 });
+  projects.forEach(project => observer.observe(project));
+</script>
+
+<script>
+  // Scroll-linked page backdrop: dark starfield behind the first project,
+  // blending to a dark muted green behind the second, then a dark muted
+  // purple behind the third. The color is matched to each project's
+  // position as it crosses the center of the viewport, so it feels
+  // continuous while scrolling in either direction.
+  (function () {
+    const projectEls = Array.from(document.querySelectorAll('.project'));
+    const colorLayer = document.querySelector('.bg-color-layer');
+    const starsLayer = document.querySelector('.bg-stars');
+    const planetsLayer = document.querySelector('.bg-planets');
+    const glitchLayer = document.querySelector('.bg-glitch');
+    if (projectEls.length < 3 || !colorLayer || !starsLayer) return;
+
+    const colors = [
+      [10, 12, 26],    // space — first project
+      [24, 42, 32],    // dark muted green — second project
+      [38, 27, 50],    // dark muted purple — third project
+    ];
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function lerpColor(c1, c2, t) {
+      return [
+        Math.round(lerp(c1[0], c2[0], t)),
+        Math.round(lerp(c1[1], c2[1], t)),
+        Math.round(lerp(c1[2], c2[2], t)),
+      ];
+    }
+
+    let centers = [];
+    function measure() {
+      centers = projectEls.slice(0, 3).map(el => {
+        const rect = el.getBoundingClientRect();
+        const top = rect.top + window.scrollY;
+        return top + rect.height / 2;
+      });
+    }
+    measure();
+    window.addEventListener('resize', measure);
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const focus = window.scrollY + window.innerHeight / 2;
+      let color, spaceAmount = 0, jumbledAmount = 0;
+
+      if (focus <= centers[0]) {
+        color = colors[0];
+        spaceAmount = 1;
+      } else if (focus >= centers[2]) {
+        color = colors[2];
+      } else if (focus <= centers[1]) {
+        const t = (focus - centers[0]) / (centers[1] - centers[0]);
+        color = lerpColor(colors[0], colors[1], t);
+        spaceAmount = 1 - t;
+        jumbledAmount = t;
+      } else {
+        const t = (focus - centers[1]) / (centers[2] - centers[1]);
+        color = lerpColor(colors[1], colors[2], t);
+        jumbledAmount = 1 - t;
+      }
+
+      colorLayer.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+      const clampedSpace = Math.max(0, Math.min(1, spaceAmount));
+      const clampedJumbled = Math.max(0, Math.min(1, jumbledAmount));
+      starsLayer.style.opacity = clampedSpace;
+      if (planetsLayer) planetsLayer.style.opacity = clampedSpace;
+      if (glitchLayer) glitchLayer.style.opacity = clampedJumbled;
+
+      const luminance = 0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2];
+      document.body.classList.toggle('on-dark', luminance < 110);
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    update();
+  })();
+</script>
+
+</body>
+</html>
