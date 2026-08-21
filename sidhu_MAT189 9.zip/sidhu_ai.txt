@@ -1,0 +1,8 @@
+Model provider used: Anthropic
+Model name and version: Claude for Mac, Claude 1.24012.9 (03c61d) 2026-07-24T04:59:17.000Z
+App/Interface used: Claude desktop app
+Share Link: https://claude.ai/share/9160f063-d41f-4f64-bb8f-674eec7a579c 
+
+
+
+
