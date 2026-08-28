@@ -10,7 +10,7 @@ body {
   line-height: 1.65;
   color: #232220;
   background: transparent;
-  max-width: 42rem;
+  max-width: 50rem;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   position: relative;
@@ -25,133 +25,16 @@ body {
   transition: background-color 0.15s linear;
   pointer-events: none;
 }
-.bg-stars {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  background-repeat: repeat;
-  background-size: 260px 240px;
-  background-image:
-    radial-gradient(2.2px 2.2px at 24px 38px, rgba(255,255,255,1), transparent 65%),
-    radial-gradient(1.4px 1.4px at 96px 14px, rgba(255,255,255,0.8), transparent 60%),
-    radial-gradient(2px 2px at 150px 92px, rgba(255,255,255,0.95), transparent 65%),
-    radial-gradient(1.2px 1.2px at 200px 150px, rgba(255,255,255,0.65), transparent 60%),
-    radial-gradient(1.8px 1.8px at 58px 170px, rgba(255,255,255,0.9), transparent 60%),
-    radial-gradient(1.2px 1.2px at 232px 46px, rgba(255,255,255,0.7), transparent 60%),
-    radial-gradient(2.4px 2.4px at 12px 210px, rgba(255,255,255,1), transparent 70%),
-    radial-gradient(1.2px 1.2px at 130px 220px, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(1.6px 1.6px at 178px 8px, rgba(255,255,255,0.85), transparent 60%),
-    radial-gradient(1.4px 1.4px at 40px 110px, rgba(255,255,255,0.7), transparent 60%);
-}
-
-/* Small distant planets, visible only during the space zone */
-.bg-planets {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-.planet {
-  position: absolute;
-  border-radius: 50%;
-}
-.planet-mars {
-  top: 14%;
-  left: 10%;
-  width: 44px;
-  height: 44px;
-  background: radial-gradient(circle at 32% 32%, #ffb98a, #e8672f 60%, #9c3a16 100%);
-  box-shadow: 0 0 24px rgba(232, 103, 47, 0.35);
-}
-.planet-neptune {
-  top: 66%;
-  left: 87%;
-  width: 30px;
-  height: 30px;
-  background: radial-gradient(circle at 32% 32%, #9fe6ff, #2f8fc7 60%, #145273 100%);
-  box-shadow: 0 0 18px rgba(47, 143, 199, 0.35);
-}
-.planet-violet {
-  top: 24%;
-  left: 80%;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 32% 32%, #e6c8ff, #9a5fd1 60%, #5c3184 100%);
-  box-shadow: 0 0 14px rgba(154, 95, 209, 0.3);
-}
-.planet-ringed {
-  top: 80%;
-  left: 20%;
-  width: 34px;
-  height: 34px;
-  background: radial-gradient(circle at 32% 32%, #fff3c4, #e0b64a 60%, #a67c1f 100%);
-  box-shadow: 0 0 16px rgba(224, 182, 74, 0.3);
-}
-.planet-ringed::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -38%;
-  width: 176%;
-  height: 24%;
-  border: 2px solid rgba(224, 182, 74, 0.55);
-  border-radius: 50%;
-  transform: translateY(-50%) rotate(-14deg);
-}
-
-/* Glitch fragments behind the Jumbled section — echoes the piece's own
-   glitch-art visual, opacity peaks while that project is centered */
-.bg-glitch {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-.glitch-bar {
-  position: absolute;
-  opacity: 0.5;
-  height: 6px;
-}
-.glitch-bar-1 { top: 10%; left: 2%;  width: 52px; background: #c47080; transform: rotate(-2deg); }
-.glitch-bar-2 { top: 20%; right: 3%; width: 64px; height: 5px; background: #5e9696; }
-.glitch-bar-3 { top: 34%; left: 2%;  width: 46px; height: 5px; background: #c6a052; transform: rotate(1deg); }
-.glitch-bar-4 { top: 50%; right: 2%; width: 58px; height: 7px; background: #8c74a8; }
-.glitch-bar-5 { top: 64%; left: 3%;  width: 50px; background: #bc7658; transform: rotate(-1.5deg); }
-.glitch-bar-6 { top: 78%; right: 4%; width: 40px; height: 5px; background: #6484a2; }
-.glitch-bar-7 { top: 90%; left: 4%;  width: 44px; background: #b08cb0; animation: glitch-flicker 4.5s ease-in-out infinite; }
-.glitch-bar-8 { top: 44%; left: 1%;  width: 34px; height: 5px; background: #80a276; animation: glitch-flicker 3.2s ease-in-out infinite 1.1s; }
-
-@keyframes glitch-flicker {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.22; }
-}
-
-/* No safe margin outside the text column on narrow screens — hide rather
-   than let the bars sit on top of the content */
-@media (max-width: 800px) {
-  .bg-glitch { display: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .glitch-bar-7, .glitch-bar-8 { animation: none; }
-}
-
 /* Text flips to a light palette while the scroll-linked backdrop is dark (space zone) */
 body.on-dark header h1,
-body.on-dark header p,
+body.on-dark .about-me summary,
 body.on-dark .project h2,
 body.on-dark .project p:not(.meta) {
   color: #f5f3ee;
   transition: color 0.3s ease;
+}
+body.on-dark .about-me p {
+  color: #d8d5cc;
 }
 body.on-dark .project .meta,
 body.on-dark figcaption {
@@ -174,16 +57,45 @@ header {
 header h1 {
   font-family: "Fraunces", Georgia, serif;
   font-weight: 600;
-  font-size: 3.6rem;
+  font-size: 6.5rem;
   letter-spacing: -0.01em;
   margin: 0;
 }
-header p {
+.about-me {
+  margin: 0.6rem 0 0;
+}
+.about-me summary {
+  cursor: pointer;
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   color: #7a776d;
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  margin: 0.6rem 0 0;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  user-select: none;
+}
+.about-me summary::-webkit-details-marker {
+  display: none;
+}
+.about-me summary::after {
+  content: '+';
+  font-size: 0.85rem;
+  color: #a8a495;
+}
+.about-me[open] summary::after {
+  content: '\2212';
+}
+.about-me p {
+  margin: 0.9rem 0 0;
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: #7a776d;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  max-width: none;
 }
 
 html {
@@ -284,7 +196,7 @@ body.on-dark .project + .project {
 .project h2 {
   font-family: "Fraunces", Georgia, serif;
   font-weight: 600;
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   margin: 0 0 0.35rem;
 }
 .project .meta {
@@ -301,7 +213,7 @@ body.on-dark .project + .project {
   line-height: 1.8;
   letter-spacing: 0.01em;
   color: #4a463f;
-  max-width: 38rem;
+  max-width: none;
 }
 
 figure { margin: 1.5rem 0; }
@@ -310,6 +222,55 @@ img, video {
   display: block;
   border-radius: 4px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.expandable {
+  cursor: zoom-in;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+  background: rgba(8, 7, 10, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-inner {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: zoom-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox-inner img,
+.lightbox-inner video {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+}
+.lightbox-caption {
+  margin: 1rem 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: #e8e6df;
+  text-align: center;
+  max-width: 90vw;
+}
+body.lightbox-locked {
+  overflow: hidden;
 }
 video {
   width: 100%;
@@ -323,6 +284,124 @@ video {
   box-shadow: 0 14px 28px -10px rgba(35, 34, 32, 0.22);
 }
 audio { width: 100%; }
+
+/* Small process-image row — a few smaller shots side by side */
+.thumb-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 0.9rem;
+  margin: 1.5rem 0;
+}
+.thumb-row > figure,
+.thumb-row > .thumb-stack {
+  margin: 0;
+  min-width: 0;
+}
+.thumb-row img {
+  width: 100%;
+  display: block;
+}
+
+/* The two crystal renders forced to the same box, regardless of their
+   original proportions — this also sets the row's height */
+.thumb-square img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* TouchDesigner shot stacked above the geyser render — stretched to the
+   crystal boxes' height, then split evenly between the two */
+.thumb-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  height: 100%;
+}
+.thumb-stack figure {
+  margin: 0;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.thumb-stack img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 30rem) {
+  .thumb-row {
+    grid-template-columns: 1fr;
+  }
+  .thumb-square img {
+    aspect-ratio: 16 / 10;
+  }
+  .thumb-stack {
+    height: auto;
+  }
+  .thumb-stack img {
+    aspect-ratio: 16 / 10;
+    height: auto;
+  }
+}
+
+/* Collapsible code panel — dark, fixed theme regardless of the page's
+   scroll-linked background, like a code editor */
+.code-panel {
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: #1b1a20;
+  overflow: hidden;
+}
+.code-panel summary {
+  cursor: pointer;
+  padding: 0.9rem 1.2rem;
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #e8e6df;
+  letter-spacing: 0.02em;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.code-panel summary::-webkit-details-marker { display: none; }
+.code-panel summary::after {
+  content: '+ expand';
+  font-size: 0.75rem;
+  color: #9a978d;
+}
+.code-panel[open] summary::after { content: '\2212 collapse'; }
+.code-panel .code-download {
+  margin: 0;
+  padding: 0 1.2rem 0.9rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+}
+.code-panel .code-download a {
+  color: #b9d6ff;
+}
+.code-panel pre {
+  margin: 0;
+  padding: 1.2rem;
+  max-height: 480px;
+  overflow: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #16151a;
+}
+.code-panel code {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: #d8d6cf;
+  white-space: pre;
+}
 figcaption {
   color: #8a8778;
   font-size: 0.85rem;
