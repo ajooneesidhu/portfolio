@@ -25,7 +25,7 @@
 <main>
 
   <section class="latest-work" aria-label="Latest work index">
-    <h2 class="latest-work-heading">Latest work</h2>
+    <h2 class="latest-work-heading">Works</h2>
     <a class="work-row" href="#enceladus">
       <span class="work-title">Enceladus</span>
       <span class="work-meta">Projection — 2026</span>
@@ -35,7 +35,7 @@
       <span class="work-meta">Audio — 2026</span>
     </a>
     <a class="work-row" href="#freshmix">
-      <span class="work-title">Fresh Mix</span>
+      <span class="work-title">Steady Drive</span>
       <span class="work-meta">Audio — 2026</span>
     </a>
   </section>
@@ -61,21 +61,28 @@
       <img src="media/sidhu_enceladus_07.jpg" alt="3D printed crystals surrounding Leap Motion sensor">
       <figcaption>3D crystal decor surrounding Leap Motion Sensor that controls projection.</figcaption>
     </figure>
-    <div class="thumb-row">
-      <figure class="thumb-square">
-        <img src="media/capstone_crystal1.png" alt="3D crystal cluster render, first version" data-caption="Randomly generated crystal that was 3D printed">
-      </figure>
-      <figure class="thumb-square">
-        <img src="media/capstone_crystal2.png" alt="3D crystal cluster render, second version" data-caption="Randomly generated crystal that was 3D printed">
-      </figure>
-      <div class="thumb-stack">
-        <figure>
-          <img src="media/capstone_blendertouchdesigner.webp" alt="TouchDesigner network driving the Enceladus projection" data-caption="Touchdesigner set up to project Blender file - done by Julie Oh">
+    <div class="carousel">
+      <div class="carousel-track">
+        <figure class="carousel-slide carousel-slide-contain">
+          <img src="media/capstone_crystal1.png" alt="3D crystal cluster render, first version" data-caption="Randomly generated crystal that was 3D printed">
+          <figcaption>Randomly generated crystal that was 3D printed</figcaption>
         </figure>
-        <figure>
+        <figure class="carousel-slide carousel-slide-contain">
+          <img src="media/capstone_crystal2.png" alt="3D crystal cluster render, second version" data-caption="Randomly generated crystal that was 3D printed">
+          <figcaption>Randomly generated crystal that was 3D printed</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="media/capstone_blendertouchdesigner.webp" alt="TouchDesigner network driving the Enceladus projection" data-caption="Touchdesigner set up to project Blender file - done by Julie Oh">
+          <figcaption>Touchdesigner set up to project Blender file - done by Julie Oh</figcaption>
+        </figure>
+        <figure class="carousel-slide">
           <img src="media/capstone_geysers.png" alt="Blender viewport showing geyser plume renders" data-caption="Blender file of drawn geysers that were used in projection">
+          <figcaption>Blender file of drawn geysers that were used in projection</figcaption>
         </figure>
       </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous image" type="button">&#8249;</button>
+      <button class="carousel-btn carousel-next" aria-label="Next image" type="button">&#8250;</button>
+      <div class="carousel-dots"></div>
     </div>
     <p>
        A projection of the surface of Saturn's moon, Enceladus. 
@@ -99,8 +106,8 @@
     <p class="meta">audio | 2026 | independent | Ajoonee Sidhu</p>
     <figure>
       <img src="media/jumbled_visual.png" alt="Colorful glitch-art visual with branching rhythm-tree shapes and warped contour lines">
-      <audio src="media/klotho_20260807-102001.wav" controls></audio>
       <figcaption>A glitch-art visual echoing the piece's rhythm trees and contours, paired with the one-minute audio.</figcaption>
+      <audio src="media/klotho_20260807-102001.wav" controls></audio>
     </figure>
 
     <details class="code-panel">
@@ -960,16 +967,22 @@ plot((pulse), figsize=(25,2)).play()
   </section>
 
     <section class="project" id="freshmix">
-    <h2>Fresh Mix</h2>
+    <h2>Steady Drive</h2>
     <p class="meta">audio | 2026 | independent | Ajoonee Sidhu</p>
     <figure>
-      <img src="media/freshmix.png" controls></img>
-      <figcaption>Screenshot of what Ableton will kind of look like 
-        of a **future** modern house track.</figcaption>
+      <img src="media/steady_drive_ableton.png" class="ableton-shot" alt="Ableton timeline showing all nine tracks">
+      <figcaption>Screenshot of Ableton file layout of all tracks</figcaption>
+      <audio src="media/Assignment2_FinalDraft.mp3" controls></audio>
     </figure>
     <p>
-      Future goal: Three-minute long musical composition created by putting together tracks in Ableton. 
-      The goal is to create a full track inspired by modern house music.  
+      A three-minute long original musical composition created within Ableton. 
+      The goal was to create an original mid-tempo, mellow, electronic track. 
+      I created a total of 9 tracks, and developed my own melodies, basslines, 
+      and drum tracks. I finished by mixing and mastering the entire piece at the end. 
+    </p>
+    <p>
+      I was inspired by modern house and electronic music to create a track that is 
+      laid-back, but still has a groove and is catchy.
     </p>
   </section>
 
@@ -1113,6 +1126,58 @@ plot((pulse), figsize=(25,2)).play()
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
+    });
+  })();
+</script>
+
+<script>
+  // Simple horizontal-scroll carousel with prev/next buttons and dots.
+  (function () {
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dotsWrap = carousel.querySelector('.carousel-dots');
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+        dot.addEventListener('click', () => {
+          track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+        });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function updateActive() {
+        const trackLeft = track.getBoundingClientRect().left;
+        let closest = 0;
+        let closestDist = Infinity;
+        slides.forEach((slide, i) => {
+          const dist = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+      }
+
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+      });
+
+      let ticking = false;
+      track.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => { updateActive(); ticking = false; });
+        }
+      });
+      updateActive();
     });
   })();
 </script>
