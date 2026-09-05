@@ -50,7 +50,7 @@ body.on-dark footer {
 }
 
 header {
-  margin: 3rem 0 5rem;
+  margin: 3rem 0 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #e5e2d8;
 }
@@ -106,7 +106,6 @@ html {
    inspired by the "latest work" list on jameswilliams.design */
 .latest-work {
   margin: 0 0 6rem;
-  border-top: 1px solid #e5e2d8;
 }
 .latest-work-heading {
   font-family: "Inter", sans-serif;
@@ -207,11 +206,11 @@ body.on-dark .project + .project {
   margin: 0 0 1.25rem;
 }
 .project p:not(.meta) {
-  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  font-weight: 300;
-  font-size: 0.95rem;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: normal;
   color: #4a463f;
   max-width: none;
 }
@@ -262,7 +261,8 @@ img, video {
 }
 .lightbox-caption {
   margin: 1rem 0 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
   color: #e8e6df;
@@ -278,73 +278,110 @@ video {
   object-fit: cover;
   background: #111;
 }
-.project:hover img,
-.project:hover video {
+.project img:hover,
+.project video:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 28px -10px rgba(35, 34, 32, 0.22);
 }
 audio { width: 100%; }
+figcaption + audio {
+  margin-top: 1.2rem;
+}
 
-/* Small process-image row — a few smaller shots side by side */
-.thumb-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: stretch;
-  gap: 0.9rem;
+/* Steady Drive Ableton screenshot — sized to match the height the old
+   screenshot rendered at, showing the full timeline with no cropping */
+.ableton-shot {
+  aspect-ratio: 2864 / 1262;
+  object-fit: contain;
+  background: #16151a;
+}
+
+/* Carousel — four process images, same height, one at a time */
+.carousel {
+  position: relative;
   margin: 1.5rem 0;
 }
-.thumb-row > figure,
-.thumb-row > .thumb-stack {
-  margin: 0;
-  min-width: 0;
-}
-.thumb-row img {
-  width: 100%;
-  display: block;
-}
-
-/* The two crystal renders forced to the same box, regardless of their
-   original proportions — this also sets the row's height */
-.thumb-square img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-/* TouchDesigner shot stacked above the geyser render — stretched to the
-   crystal boxes' height, then split evenly between the two */
-.thumb-stack {
+.carousel-track {
   display: flex;
-  flex-direction: column;
   gap: 0.9rem;
-  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-.thumb-stack figure {
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-slide {
+  flex: 0 0 100%;
   margin: 0;
-  flex: 1 1 0;
-  min-height: 0;
-  overflow: hidden;
+  scroll-snap-align: center;
 }
-.thumb-stack img {
+.carousel-slide img {
   width: 100%;
-  height: 100%;
+  height: 26rem;
   object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+/* The crystal renders are tall/portrait — show them in full instead of
+   cropping top and bottom to fill the box */
+.carousel-slide-contain img {
+  object-fit: contain;
+  background: #16151a;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(20, 18, 16, 0.55);
+  color: #fdfcf7;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.carousel-btn:hover {
+  background: rgba(20, 18, 16, 0.75);
+}
+.carousel-prev { left: 0.6rem; }
+.carousel-next { right: 0.6rem; }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #cfcac0;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  background: #6b5b3f;
+}
+body.on-dark .carousel-dot {
+  background: rgba(245, 243, 238, 0.35);
+}
+body.on-dark .carousel-dot.active {
+  background: #f5f3ee;
 }
 
 @media (max-width: 30rem) {
-  .thumb-row {
-    grid-template-columns: 1fr;
-  }
-  .thumb-square img {
-    aspect-ratio: 16 / 10;
-  }
-  .thumb-stack {
-    height: auto;
-  }
-  .thumb-stack img {
-    aspect-ratio: 16 / 10;
-    height: auto;
+  .carousel-slide img {
+    height: 16rem;
   }
 }
 
@@ -403,6 +440,8 @@ audio { width: 100%; }
   white-space: pre;
 }
 figcaption {
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
   color: #8a8778;
   font-size: 0.85rem;
   font-style: italic;
